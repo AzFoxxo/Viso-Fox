@@ -55,7 +55,7 @@ section code
 
 ## ROM Disk format
 
-Head starts with the magic number `VFOX` followed by 64 bit version number, start of the data section in 64 bit, start of the code section in 64 bit, the data section, the code section.
+Head starts with the magic number `VFOX` followed by 32 bit version number, start of the data section in 64 bit, start of the code section in 64 bit, the data section, the code section.
 
 ## Minimum Boot Sequence
 
