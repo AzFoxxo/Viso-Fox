@@ -207,6 +207,14 @@ The instruction format is as follows:
 - **CALL** (LABEL OR ADDRESS): 0x001E - Call subroutine
 - **RET**: 0x001F - Return from subroutine
 
+## Addressing modes
+
+There are three addressing modes for instructions such as `MOV`.
+- **0x0** - Register
+- **0x1** - Memory
+- **0x2** - Immediate
+
+Note: Zero should be provided if the instruction does not require an addressing mode.
 
 ## Assembly syntax overview
 
