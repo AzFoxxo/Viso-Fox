@@ -209,10 +209,17 @@ The instruction format is as follows:
 
 ## Addressing modes
 
-There are three addressing modes for instructions such as `MOV`.
-- **0x0** - Register
-- **0x1** - Memory
-- **0x2** - Immediate
+There are six addressing modes for instructions such as `MOV`.
+| Code | Mnemonic  | Name                   | Example            | Description                                                                  |
+| ---- | --------- | ---------------------- | ------------------ | ---------------------------------------------------------------------------- |
+| 0x0  | `IMM`     | Immediate              | `MOV 42, RX`       | Move constant value 42 into register `RX` (value is encoded in instruction)  |
+| 0x1  | `REG`     | Register               | `MOV RY, RX`       | Move value from `RY` into `RX`                                               |
+| 0x2  | `MEM`     | Direct Memory          | `MOV [0x1000], RX` | Move value from memory at address `0x1000` into `RX`                         |
+| 0x3  | `IND`     | Indirect Memory        | `MOV [RY], RX`     | Move value from memory address stored in register `RY` into `RX`             |
+| 0x4  | `SHD_REG` | Shadow Register        | `MOV RYS, RX`      | Move value from **shadow register** `RYS` into `RX`                          |
+| 0x5  | `IND_SHD` | Indirect Shadow Memory | `MOV [RYS], RX`    | Move value from memory address stored in **shadow register** `RYS` into `RX` |
+
+Sometimes `RS` isn't enough and you need to be able to effect registers directly, that is where shadow addressing modes come in. When in use, they use the disabled registers instead of the active registers. This is done by using the shadow register mnemonic for the register e.g. RX shadow register is RXS.
 
 Note: Zero should be provided if the instruction does not require an addressing mode.
 
@@ -275,11 +282,17 @@ section data
 
 ### Types of data
 
-Use [] for non-immediate values, i.e. values that are stored in memory or registers. Use immediate values without [].
+Use [] for non-immediate values, i.e. values that are stored in memory or registers. Use immediate values without []. Use @ for shadow registers.
 
 <!-- Register -->
 `[RX]` - Value at the memory address which is stored in RX.
 `RX` - Value in the RX register.
+
+<!-- Shadow Register -->
+
+`[RXS]` — Value at the memory address stored in the shadow register RX.
+
+`RXS` — Value in the shadow register RX.
 
 <!-- Address -->
 `[0xFF]` - Value at memory address 0xFF.
