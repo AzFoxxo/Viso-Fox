@@ -67,7 +67,7 @@ Comments are denoted by the `;` at the start or end of a line.
 ```assembly
 section meta
 @meta version: 1.0
-@meta entry main
+@meta entry: main
 
 section data
 @real my_variable: "A"   ; Define a real variable with ASCII value of 'A'
