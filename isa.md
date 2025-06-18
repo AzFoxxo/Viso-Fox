@@ -124,7 +124,7 @@ Colour palette is [Jehkoba64 Palette](https://lospec.com/palette-list/jehkoba64)
 | 2       | `O`      | Overflow — signed overflow occurred  |
 | 3       | `C`      | Carry — unsigned overflow (optional) |
 | 4       | `DR`     | Display draw - lock graphics region  |
-| 4–63    | —        | Reserved for future use or cleared   |
+| 5–63    | —        | Reserved for future use or cleared   |
 
 ## Memory regions
 
