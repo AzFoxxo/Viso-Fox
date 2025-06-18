@@ -2,7 +2,7 @@
 
 ## Overview
 
-Viso-Fox is a hypothetical ISA designed to be simple. It uses 64 bit addressing only using little-endian format. IO uses interrupts.
+Viso-Fox is a hypothetical ISA designed to be simple. It uses 64 bit addressing only using little-endian format. IO uses data ports and are polled 
 
 ## IO
 
