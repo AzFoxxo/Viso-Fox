@@ -53,6 +53,7 @@ Use [] for non-immediate values, i.e. values that are stored in memory or regist
 | `my_label`      | Value of the label — address in memory                                |
 | `[my_variable]` | Value at the memory address stored in the variable `my_variable`      |
 | `my_variable`   | Value of the variable (i.e., its memory address or assigned constant) |
+| `#0X10`         | Immediate value `0x10` (hexadecimal)                                  |
 
 ## Labels
 
