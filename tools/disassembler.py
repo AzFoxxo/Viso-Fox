@@ -383,6 +383,8 @@ def debug_read_rom(filename: str) -> None:
 def disassemble_rom(source_file: str, output_file: str) -> None:
     """Disassemble a ROM file into assembly source code."""
 
+    entry_point: str = "_start_of_assembly_"
+
     # Check if the file exists
     try:
         with open(source_file, 'rb') as f:
@@ -431,7 +433,7 @@ def disassemble_rom(source_file: str, output_file: str) -> None:
         # Write meta section
         out.write("section meta\n")
         out.write(f"@meta version: {header.version}.0\n")
-        out.write("@meta entry: _start_of_assembly_\n")
+        out.write(f"@meta entry: {entry_point}\n")
         out.write("\n")
 
         # Write data section
@@ -444,7 +446,7 @@ def disassemble_rom(source_file: str, output_file: str) -> None:
 
         # Write code section
         out.write("section code\n")
-        out.write("_start_of_assembly:\n")
+        out.write(f"{entry_point}:\n")
 
         for _, pack in enumerate(instructions):
             decoded = decode_instruction(pack.instruction)
