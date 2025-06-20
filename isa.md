@@ -218,6 +218,8 @@ All instructions are encoded as 16-bit opcodes and require a denotation (`0xF`) 
 
 If a destination operand is not specified, the result is stored in the first source operand. The destination operand must be a register or memory location.
 
+For an exhaustive list of supported operands and their addressing modes for each instruction, see the [instruction-table.md](instruction-table.md).
+
 #### Common instructions
 
 | Mnemonic | Operands           | Opcode   | Description                           |
