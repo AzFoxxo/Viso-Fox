@@ -294,8 +294,8 @@ If no destination operand is specified, the result is stored in the first source
 
 | Mnemonic | Operands      | Opcode   | Description        |
 | -------- | ------------- | -------- | ------------------ |
-| `in`     | `port`        | `0x0020` | Read from I/O port |
-| `out`    | `port, value` | `0x0021` | Write to I/O port  |
+| `in`     | `port, dest`  | `0x0020` | Read from I/O port |
+| `out`    | `value, port` | `0x0021` | Write to I/O port  |
 
 ## Addressing modes
 
