@@ -2,9 +2,9 @@
 
 ## Overview
 
-Viso-Fox is a hypothetical ISA designed to be simple. It uses 64 bit addressing only using little-endian format. IO uses data ports and are polled 
+Viso-Fox is a hypothetical ISA designed to be simple. It uses 64 bit addressing only using little-endian format. IO uses data ports and are polled.Instructions range from 64 to 256 bits wide based on the number of operands. This document describes the architecture, instruction set, and other details of the Viso-Fox ISA.
 
-## IO
+## I/O
 
 In total, there are 16 data ports from `0x00` to `0x0F` and each port is 64 bits wide. Each port is both readable and writeable using the `IN` and `OUT` respectively. They are not stored in memory but are directly accessible via the CPU.
 
@@ -150,10 +150,10 @@ Viso-Fox supports interrupts/syscalls two kinds of interrupts:
 
 ### Invocation
 
-Interrupts are invoked using the `INT` instruction with a specific interrupt number. The CPU uses an Interrupt Vector Table (IVT) to map interrupt numbers to their corresponding handlers. The IVT is located at the start of memory and contains 256 entries, each 8 bytes long, for a total size of 2 KB.
+Interrupts are invoked using the `int` instruction with a specific interrupt number. The CPU uses an Interrupt Vector Table (IVT) to map interrupt numbers to their corresponding handlers. The IVT is located at the start of memory and contains 256 entries, each 8 bytes long, for a total size of 2 KB.
 
 `0x00` - is reserved for the timer interrupt configured via programmable time-based interrupt port `0x0F`.
-Interrupts run until completion and give control back to the CPU with the `IRET` instruction.
+Interrupts run until completion and give control back to the CPU with the `iret` instruction.
 
 Each interrupt has a specific number which corresponds to directly to the entry in the table e.g. `0x00` corresponds to the first entry in the interrupt table. The table does not contain the interrupt number itself but an address to the interrupt handler.
 
@@ -165,11 +165,11 @@ NOTE: The time based interrupt will only occur after it finishes by the time spe
 
 ### Behaviours
 
-If an interrupt entry is defined as `0x00`, it is considered an invalid interrupt and perform a `NOP` (No Operation) instead of invoking an interrupt handler. This allows the CPU to skip over unused or unimplemented interrupts without causing an error.
+If an interrupt entry is defined as `0x00`, it is considered an invalid interrupt and perform a `nop` (No Operation) instead of invoking an interrupt handler. This allows the CPU to skip over unused or unimplemented interrupts without causing an error.
 
 When an interrupt is invoked, the CPU saves the current state of the program (registers and flags) onto the stack before transferring control to the interrupt handler. This ensures that when the interrupt handler completes, it can restore the program state and continue execution seamlessly.
 
-When `INT` is invoked, the CPU performs the following steps:
+When `int` is invoked, the CPU performs the following steps:
 
 1. Pushes R0-R7
 2. Pushes FLAGS
@@ -177,7 +177,7 @@ When `INT` is invoked, the CPU performs the following steps:
 4. Updates the stack pointer (SP) to point to the new top of the stack.
 5. Sets the PC to the address of the interrupt handler from the IVT.
 
-When the interrupt handler completes, it uses the `IRET` instruction to return control back to the program. The CPU performs the following steps:
+When the interrupt handler completes, it uses the `iret` instruction to return control back to the program. The CPU performs the following steps:
 
 1. Pops the PC (Program Counter) from the stack.
 2. Pops FLAGS from the stack.
@@ -312,7 +312,7 @@ There are five addressing modes for instructions such as `mov`. `PORT` is only u
 | 0x4  | `IND`     | Indirect Memory        | `MOV [RY], RX`     | Move value from memory address stored in register `RY` into `RX`              |
 | 0x5  | `PORT`    | I/O Port               | `IN 0x04, RX`      | Read value from I/O port `0x04` into `RX`                                     |
 
-Note: Use `NULL` for instructions which require no addressing mode e.g. `HLT`, `NOP` as these take no operands.
+Note: Use `NULL` for instructions which require no addressing mode e.g. `hlt`, `nop` as these take no operands.
 
 ## Assembly syntax
 

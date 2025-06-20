@@ -20,6 +20,7 @@ Meta directives are more for future proofing and are currently limited in use.
 
 `@meta version: 1.0` - Defines the minimum version of the assembly syntax required to run the code.
 `@meta entry main` - Defines the entry point of the assembly program, which is the main function that will be executed when the program starts. (default is `main`)
+`@meta replace: old_string new_string` - Defines a string replacement directive that replaces all occurrences of `old_string` with `new_string` in the assembly code. This is useful for macros or aliases. old_string and new_string can be any valid string, including labels, variables, or constant but must not contain spaces. This directive is processed before the assembly code is compiled.
 
 ## Data segment
 
@@ -79,3 +80,47 @@ main:
     out R1, 0x04         ; Output the value of R1 to I/O port 0x04
     hlt                  ; Halt execution
 ```
+
+## Built-in constants
+
+Viso-Fox assembly provides a number of built-in constants that can be used in the assembly code. These constants are predefined values that represent common values or registers in the architecture. They can be used directly in the code without needing to define them explicitly.
+
+It is possible to define your own compile-time constants using the `@meta replace` directive, but built-in constants are always available.
+
+List of built-in constants:
+
+| Constant  | Value | Description                                    |
+| --------- | ----- | ---------------------------------------------- |
+| `TRUE`    | 1     | Boolean true value                             |
+| `FALSE`   | 0     | Boolean false value                            |
+| `NULL`    | 0x0   | Null pointer value                             |
+| `R0`      | 0x0   | General-purpose register 0                     |
+| `R1`      | 0x1   | General-purpose register 1                     |
+| `R2`      | 0x2   | General-purpose register 2                     |
+| `R3`      | 0x3   | General-purpose register 3                     |
+| `R4`      | 0x4   | General-purpose register 4                     |
+| `R5`      | 0x5   | General-purpose register 5                     |
+| `R6`      | 0x6   | General-purpose register 6                     |
+| `R7`      | 0x7   | General-purpose register 7                     |
+| `FLAGS`   | 0x8   | Flags register (status flags)                  |
+| `PC`      | 0x9   | Program Counter register (instruction pointer) |
+| `SP`      | 0xA   | Stack Pointer register                         |
+| `BP`      | 0xB   | Base Pointer register                          |
+| `IO`      | 0xC   | I/O port register                              |
+| `IVT`     | 0xD   | Interrupt Vector Table register                |
+| `PORT_0`  | 0x0   | I/O port 0                                     |
+| `PORT_1`  | 0x1   | I/O port 1                                     |
+| `PORT_2`  | 0x2   | I/O port 2                                     |
+| `PORT_3`  | 0x3   | I/O port 3                                     |
+| `PORT_4`  | 0x4   | I/O port 4                                     |
+| `PORT_5`  | 0x5   | I/O port 5                                     |
+| `PORT_6`  | 0x6   | I/O port 6                                     |
+| `PORT_7`  | 0x7   | I/O port 7                                     |
+| `PORT_8`  | 0x8   | I/O port 8                                     |
+| `PORT_9`  | 0x9   | I/O port 9                                     |
+| `PORT_10` | 0xA   | I/O port A                                     |
+| `PORT_11` | 0xB   | I/O port B                                     |
+| `PORT_12` | 0xC   | I/O port C                                     |
+| `PORT_13` | 0xD   | I/O port D                                     |
+| `PORT_14` | 0xE   | I/O port E                                     |
+| `PORT_15` | 0xF   | I/O port F                                     |
