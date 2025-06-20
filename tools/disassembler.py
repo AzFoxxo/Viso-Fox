@@ -384,6 +384,7 @@ def disassemble_rom(source_file: str, output_file: str) -> None:
     """Disassemble a ROM file into assembly source code."""
 
     entry_point: str = "_start_of_assembly_"
+    data_name: str = "data_"
 
     # Check if the file exists
     try:
@@ -440,7 +441,7 @@ def disassemble_rom(source_file: str, output_file: str) -> None:
         out.write("section data\n")
         count: int = 0
         for value in data_section:
-            out.write(f"@real reconstructed_data_{count} {value}\n")
+            out.write(f"@real {data_name}{count}: {value}\n")
             count += 1
         out.write("\n")
 
