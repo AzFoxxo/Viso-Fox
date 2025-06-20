@@ -462,7 +462,7 @@ def disassemble_rom(source_file: str, output_file: str) -> None:
                 mode_str = code_to_addressing_mode(mode)
 
                 if mode_str == "REG":
-                    operand_str = binary_to_register(operand)
+                    operand_str = f"%{binary_to_register(operand)}"
                 elif mode_str == "IND":
                     operand_str = f"[{binary_to_register(operand)}]"
                 elif mode_str == "MEM":

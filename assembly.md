@@ -45,8 +45,8 @@ Use [] for non-immediate values, i.e. values that are stored in memory or regist
 
 | Syntax          | Description                                                           |
 | --------------- | --------------------------------------------------------------------- |
-| `[R1]`          | Value at the memory address stored in register `R1`                   |
-| `R1`            | Value stored in register `R1`                                         |
+| `[%R1]`          | Value at the memory address stored in register `R1`                   |
+| `%R1`            | Value stored in register `R1`                                         |
 | `[0xFF]`        | Value at memory address `0xFF`                                        |
 | `0xFF`          | Immediate value `0xFF`                                                |
 | `[my_label]`    | Value at the memory address of the label `my_label`                   |
@@ -75,9 +75,9 @@ section data
 
 section code
 main:
-    mov my_variable, R1  ; Move the value of my_variable into R1
-    add R1, 10, R2       ; Add 10 to R1 and store the result in R2
-    out R1, 0x04         ; Output the value of R1 to I/O port 0x04
+    mov my_variable, %R1  ; Move the value of my_variable into R1
+    add %R1, 10, R2       ; Add 10 to R1 and store the result in R2
+    out %R1, 0x04         ; Output the value of R1 to I/O port 0x04
     hlt                  ; Halt execution
 ```
 
