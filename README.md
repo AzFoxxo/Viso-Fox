@@ -9,4 +9,12 @@ Viso-Fox is a hypothetical ISA designed to be simple for experimenting with. It 
 
 ## Tooling
 
-[`Tools/`](tools/) directory contains utilities such as a ROM disassembler.
+See [tools/](tools/) directory contains utilities such as a ROM disassembler.
+
+## Examples
+
+See [examples/](examples/) directory for example assembly programs and their outputs.
+
+## Licence
+
+This project is licensed under the Apache License Version 2.0. See the [LICENSE](LICENSE) file for details. Third-party libraries may have their own licenses.
