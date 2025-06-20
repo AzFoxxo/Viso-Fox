@@ -81,6 +81,23 @@ main:
     hlt                  ; Halt execution
 ```
 
+## String literals
+
+Viso-Fox assembly supports string literals in the data segment or single character strings as immediate values. Single characters are stored with `@real "A"` syntax, while strings can be defined using `@array` directive. Strings do not hold their length so it is recommended to use null-terminated strings for easier handling.
+
+### Special characters in strings
+
+A string bound is denoted by anything between double quotes `"` and can contain any characters but if you need to say include a newline, tab or double quote in the string, you can use the following special characters:
+
+| Character | Description                |
+| --------- | -------------------------- |
+| `@NL`      | Newline character         |
+| `@TAB`     | Tab character             |
+| `@QUOTE`   | Double quote character    |
+| `@NULL`    | Null character (0x00)     |
+
+Say you want to include `@NL` in your string, you can use a secondary `@` before `@NL` e.g. `@@NL` -> `@NL` and so on.
+
 ## Built-in constants
 
 Viso-Fox assembly provides a number of built-in constants that can be used in the assembly code. These constants are predefined values that represent common values or registers in the architecture. They can be used directly in the code without needing to define them explicitly.
