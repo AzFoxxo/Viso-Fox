@@ -28,8 +28,7 @@ The data segment is used to define variables, constants, and other data that the
 ### Data Directives
 
 `@real` - Defines a 64-bit real number variable including characters using their corresponding ASCII values.
-`@array_string` - Defines a string variable. It is recommended to use null-terminated strings for compatibility.
-`@array` - Defines an array of 64-bit values.
+`@array` - Defines an array of 64-bit values. You may use an ASCII string e.g. "Hello, World!\n" too (null terminated is recommended amd each character is 64 bits).
 
 ## Code segment
 
