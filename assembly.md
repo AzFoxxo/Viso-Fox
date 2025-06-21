@@ -87,16 +87,10 @@ Viso-Fox assembly supports string literals in the data segment or single charact
 
 ### Special characters in strings
 
-A string bound is denoted by anything between double quotes `"` and can contain any characters but if you need to say include a newline, tab or double quote in the string, you can use the following special characters:
+A string bound is denoted by anything between double quotes `"`.
 
-| Character | Description                |
-| --------- | -------------------------- |
-| `@NL`      | Newline character         |
-| `@TAB`     | Tab character             |
-| `@QUOTE`   | Double quote character    |
-| `@NULL`    | Null character (0x00)     |
-
-Say you want to include `@NL` in your string, you can use a secondary `@` before `@NL` e.g. `@@NL` -> `@NL` and so on.
+Say you want want to include a double quote or any other special characters (`DQUOTE`, `TAB`, `NULL` or `NL`), you exit the string and add to the list e.g.
+`"My string", NULL` will create a string of `My string` and append the ASCII code for for null terminated string.
 
 ## Built-in constants
 
@@ -141,3 +135,7 @@ List of built-in constants:
 | `PORT_13` | 0xD   | I/O port D                                     |
 | `PORT_14` | 0xE   | I/O port E                                     |
 | `PORT_15` | 0xF   | I/O port F                                     |
+| `NL`      | 13    | Newline ASCII value                            |
+| `NULL`    | 0     | Null terminator ASCII value                    |
+| `TAB`     | 9     | Tab ASCII value                                |
+| `DQUOTE`  | 34    | Double-quote ASCII VALUE                       |
